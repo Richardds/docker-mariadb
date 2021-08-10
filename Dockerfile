@@ -1,4 +1,4 @@
-FROM mariadb:10.5
+FROM mariadb:10.6.4
 
 # Disable performance_schema to save memory
 COPY --chown=root:root ./config/memory.cnf /etc/mysql/conf.d/memory.cnf
