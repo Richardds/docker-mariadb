@@ -1,0 +1,4 @@
+[mysqld]
+query_cache_type    = ON
+query_cache_limit   = 128K
+query_cache_size    = 64M

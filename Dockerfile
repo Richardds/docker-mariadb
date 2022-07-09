@@ -2,11 +2,13 @@ ARG MARIADB_VERSION
 
 FROM mariadb:${MARIADB_VERSION}
 
-LABEL maintainer="Richard Boldiš <richard@boldis.dev>"
+LABEL org.opencontainers.image.title 'MariaDB'
+LABEL org.opencontainers.image.description 'MariaDB with performance schema disabled by default'
+LABEL org.opencontainers.image.authors 'Richard Boldiš <richard@boldis.dev>'
+LABEL org.opencontainers.image.source https://github.com/Richardds/docker-mariadb
 
-# Disable performance_schema to save memory
-COPY --chown=root:root ./config/memory.cnf /etc/mysql/conf.d/memory.cnf
+# Replace the default configuration
+RUN rm -rf /etc/mysql
+COPY --chown=root:root ./config /etc/mysql
 
-RUN chmod 0644 /etc/mysql/conf.d/*
-
-CMD [ "mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci" ]
+CMD [ "mysqld" ]
