@@ -1,20 +1,20 @@
-version: '3.8'
+version: '3'
 
 volumes:
   database: {}
 
 services:
   database:
+    image: ghcr.io/richardds/mariadb:10.6-A
     build:
       dockerfile: Dockerfile
       context: .
       args:
-        - MARIADB_VERSION=10.7.3
+        - MARIADB_VERSION=10.6
     restart: unless-stopped
     volumes:
       - database:/var/lib/mysql
     environment:
-      - MYSQL_DATABASE=database
       - MYSQL_RANDOM_ROOT_PASSWORD=1
-    #ports:
-    #  - 127.0.0.1:3306:3306/tcp
+    ports:
+      - 127.0.0.1:3306:3306/tcp
