@@ -8,6 +8,9 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+        matrix:
+          mariadb_version: ['10.6', '10.7', '10.8', '10.9', '10.10']
     steps:
       -
         name: Setup Docker
@@ -30,10 +33,10 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           build-args: |
-            MARIADB_VERSION=10.6
+            MARIADB_VERSION=${{ matrix.mariadb_version }}
           push: true
           tags: |
             richardboldis/mariadb:latest
-            richardboldis/mariadb:${{ github.ref_name }}
+            richardboldis/mariadb:${{ matrix.mariadb_version }}-${{ github.ref_name }}
             ghcr.io/richardds/mariadb:latest
-            ghcr.io/richardds/mariadb:${{ github.ref_name }}
+            ghcr.io/richardds/mariadb:${{ matrix.mariadb_version }}-${{ github.ref_name }}
