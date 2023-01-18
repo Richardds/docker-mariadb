@@ -5,7 +5,6 @@ volumes:
 
 services:
   database:
-    image: ghcr.io/richardds/mariadb:10.6-A
     build:
       dockerfile: Dockerfile
       context: .
