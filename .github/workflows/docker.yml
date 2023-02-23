@@ -27,10 +27,10 @@ jobs:
       DOCKER_BUILD_ARGS: |
         MARIADB_VERSION=${{ matrix.mariadb_version }}
       DOCKER_TAGS: |
-        richardboldis/mariadb:latest
-        richardboldis/mariadb:${{ matrix.mariadb_version }}-${{ github.ref_name }}
-        ghcr.io/richardds/mariadb:latest
-        ghcr.io/richardds/mariadb:${{ matrix.mariadb_version }}-${{ github.ref_name }}
+        richardboldis/mariadb-${{ matrix.mariadb_version }}:latest
+        richardboldis/mariadb-${{ matrix.mariadb_version }}:${{ github.ref_name }}
+        ghcr.io/richardds/mariadb-${{ matrix.mariadb_version }}:latest
+        ghcr.io/richardds/mariadb-${{ matrix.mariadb_version }}:${{ github.ref_name }}
     steps:
       -
         name: Setup Docker
